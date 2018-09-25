@@ -42,8 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Armor.cs" />
+    <Compile Include="Cloak.cs" />
+    <Compile Include="Equipment.cs" />
+    <Compile Include="EquipmentCatalogue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shield.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
