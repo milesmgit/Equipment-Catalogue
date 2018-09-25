@@ -59,7 +59,7 @@ namespace Equipment_Catalogue
 				// prompt that will instruct a user to choose a list of items,
 				// or will instruct the user to enter an item by name.
 
-				Console.WriteLine("Choose a list of items,\nor enter the name of the item directly. [Not Case Sensitive]\n\n");
+				Console.WriteLine("Main Menu: \n\n\nChoose a list of items,\nor enter the name of the item directly. [Not Case Sensitive]\n\n");
 				Console.WriteLine("[Enter 1 for a List of the Entire Equipment Catalogue]\n" +
 					"[Enter 2 for a List of Armor]\n[Enter 3 for a List of Shields]\n" +
 					"[Enter 4 for a List of Cloaks]\n" +
