@@ -59,7 +59,7 @@ namespace Equipment_Catalogue
 				// prompt that will instruct a user to choose a list of items,
 				// or will instruct the user to enter an item by name.
 
-				Console.WriteLine("Choose a list of items,\nor enter the name of the item directly.[Not Case Sensitive]\n\n");
+				Console.WriteLine("Choose a list of items,\nor enter the name of the item directly. [Not Case Sensitive]\n\n");
 				Console.WriteLine("[Enter 1 for a List of the Entire Equipment Catalogue]\n" +
 					"[Enter 2 for a List of Armor]\n[Enter 3 for a List of Shields]\n" +
 					"[Enter 4 for a List of Cloaks]\n" +
@@ -120,26 +120,33 @@ namespace Equipment_Catalogue
 
 								Console.WriteLine("Enter an item attribute to return a list of matching items.\n" +
 									"Choose from the following list of item attributes.\n\n" +
-									"[AC_Type: Deflection, Natural, Armor, Dodge, Shield]\n" +
-									"[Can_Be_Found_In_Area: <Type an Area> Rare, BUR, Avernus, Dis, Min]\n\n");
+									"[1] [AC_Type: Deflection, Natural, Armor, Dodge, Shield]\n" +
+									"[2] [Can_Be_Found_In_Area: <Type an Area> Rare, BUR, Avernus, Dis, Min]\n\n");
+								Console.WriteLine("Type 'main-menu' to return to the previous menu.\n\n\n");
 								string refinedSearch = Console.ReadLine().ToLower();
-								// i'll add string matching later; for now this is workable solution. https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex.ismatch?view=netframework-4.7.2
-								if (refinedSearch != "Deflection".ToLower() && refinedSearch != "Natural".ToLower() && refinedSearch != "Armor".ToLower()
-										&& refinedSearch != "Dodge".ToLower() && refinedSearch != "Shield".ToLower() &&
-										refinedSearch != "Rare".ToLower() && refinedSearch != "BUR".ToLower() &&
-										refinedSearch != "Avernus".ToLower() && refinedSearch != "Dis".ToLower()
-										&& refinedSearch != "Min".ToLower())
+								if (refinedSearch == "main-menu".ToLower())
 								{
-									Console.WriteLine("\n\nThat attribute is not in our database. Please make a new " +
-										"selection.\n\n");
+									Console.WriteLine("\n\nMain Menu:");
 								}
 								else
 								{
-									// method that will list the equipment profile of each item in the equipmentCatalogue
-									// to the console. I'm using the computed property 'NumberOfItems' in place of _items.Length.
-									equipmentCatalogue.DisplayEquipmentCategory(equipmentCatalogue, refinedSearch);
+									// i'll add string matching later; for now this is workable solution. https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex.ismatch?view=netframework-4.7.2
+									if (refinedSearch != "Deflection".ToLower() && refinedSearch != "Natural".ToLower() && refinedSearch != "Armor".ToLower()
+											&& refinedSearch != "Dodge".ToLower() && refinedSearch != "Shield".ToLower() &&
+											refinedSearch != "Rare".ToLower() && refinedSearch != "BUR".ToLower() &&
+											refinedSearch != "Avernus".ToLower() && refinedSearch != "Dis".ToLower()
+											&& refinedSearch != "Min".ToLower())
+									{
+										Console.WriteLine("\n\nThat attribute is not in our database. Please make a new " +
+											"selection.\n\n");
+									}
+									else
+									{
+										// method that will list the equipment profile of each item in the equipmentCatalogue
+										// to the console. I'm using the computed property 'NumberOfItems' in place of _items.Length.
+										equipmentCatalogue.DisplayEquipmentCategory(equipmentCatalogue, refinedSearch);
+									}
 								}
-
 							}
 						}
 						else
