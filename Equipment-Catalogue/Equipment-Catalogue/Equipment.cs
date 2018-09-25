@@ -51,13 +51,11 @@ namespace Equipment_Catalogue
 		// maximum benefit that can be gained from your character's dexterity modifier: 100 is limit for those items that don't have a max dex bonus
 		public int MAX_DEX_Bonus { get; private set; }
 
-
 		// setting a default constructor for the Equipment base class for use when calling generic methods.
 		public Equipment()
 		{
 
 		}
-
 
 		// base constructor for use in my subclass detector method
 		public Equipment(string equipment_Type)
@@ -72,7 +70,6 @@ namespace Equipment_Catalogue
 											string aC_Type, string can_Be_Found_In_Area, int aC_Bonus,
 											int mAX_DEX_Bonus)
 		{
-
 			// using an if statement to throw an exception if our piece of equipment
 			// doesn't have an equpment_Name passed to our Base class constructor.
 			if (string.IsNullOrEmpty(equipment_Name))
@@ -105,12 +102,10 @@ namespace Equipment_Catalogue
 			Console.WriteLine($"Item Maximum Dexterity Bonus: {MAX_DEX_Bonus}");
 
 		}
-
 		// method to give space between method calls  [purpose: formatting]
 		public void GimmeSomeSpace()
 		{
 			Console.WriteLine("\n");
 		}
-
 	}
 }

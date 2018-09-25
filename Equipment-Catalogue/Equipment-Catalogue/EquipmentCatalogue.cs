@@ -29,6 +29,14 @@ namespace Equipment_Catalogue
 			Equipment itemToReturn = null;
 			foreach (var item in _items)
 			{
+
+				//if ((System.Text.RegularExpressions.Regex.IsMatch(item.Equipment_Name.ToLower(), criteria.ToLower(), System.Text.RegularExpressions.RegexOptions.IgnoreCase)))
+				//{
+				//	itemToReturn = item;
+
+				//}
+
+				// this doesn't restrict results from single letter input.  it returns partial matches. I'd rather be more restrictive.
 				if (item.Equipment_Name.ToLower().Contains(criteria.ToLower()))
 				{
 					itemToReturn = item;
@@ -46,21 +54,24 @@ namespace Equipment_Catalogue
 		{
 			for (int i = 0; i < NumberOfItems; i++)
 			{
+
 				if (_items.GetItemAt(i).AC_Type.ToLower().Contains(criteria.ToLower()))
 				{
+					Console.WriteLine("\n\n");
 					// this method would be used like so:    someInstance.GetEquipmentProfile();
 					_items.GetItemAt(i).GetEquipmentProfile();
 					Console.WriteLine("\n\n");
 				}
 				else if (_items.GetItemAt(i).Can_Be_Found_In_Area.ToLower().Contains(criteria.ToLower()))
 				{
+					Console.WriteLine("\n\n");
 					// this method would be used like so:    someInstance.GetEquipmentProfile();
 					_items.GetItemAt(i).GetEquipmentProfile();
 					Console.WriteLine("\n\n");
 				}
+
 			}
 		}
-
 
 		// method that will list the equipment profile of each item in the equipmentCatalogue
 		// to the console. I'm using the computed property 'NumberOfItems' in place of _items.Length.
@@ -68,7 +79,6 @@ namespace Equipment_Catalogue
 		{
 			for (int i = 0; i < NumberOfItems; i++)
 			{
-
 				// this method would be used like so:    someInstance.GetEquipmentProfile();
 				_items.GetItemAt(i).GetEquipmentProfile();
 				Console.WriteLine("\n\n");
