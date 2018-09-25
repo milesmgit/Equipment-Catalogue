@@ -119,7 +119,7 @@ namespace Equipment_Catalogue
 								equipment.GimmeSomeSpace();
 
 								Console.WriteLine("Enter an item attribute to return a list of matching items.\n" +
-									"Choose from the following list of item attributes.\n\n" +
+									"Choose from the following list of item attributes. [Not Case Sensitive]\n\n" +
 									"[1] [AC_Type: Deflection, Natural, Armor, Dodge, Shield]\n" +
 									"[2] [Can_Be_Found_In_Area: <Type an Area> Rare, BUR, Avernus, Dis, Min]\n\n");
 								Console.WriteLine("Type 'main-menu' to return to the previous menu.\n\n\n");
