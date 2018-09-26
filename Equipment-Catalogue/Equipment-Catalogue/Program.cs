@@ -135,7 +135,7 @@ namespace Equipment_Catalogue
 								string refinedSearch = Console.ReadLine().ToLower();
 								if (refinedSearch == "main-menu".ToLower())
 								{
-									Console.WriteLine("\n\nMain Menu:");
+									// program will loop back to main-menu by default.
 								}
 								else
 								{
