@@ -129,7 +129,7 @@ namespace Equipment_Catalogue
 
 								Console.WriteLine("Enter an item attribute to return a list of matching items.\n" +
 									"Choose from the following list of item attributes. [Not Case Sensitive]\n\n" +
-									"[1] [AC Type: <Type One of the Following AC Type's> Deflection, Natural, Armor, Dodge, Shield]\n" +
+									"[1] [AC Type: <Type One of the Following AC Types> Deflection, Natural, Armor, Dodge, Shield]\n" +
 									"[2] [Can Be Found In Area: <Type One of the Following Areas> Rare, BUR, Avernus, Dis, Min]\n\n");
 								Console.WriteLine("Type 'main-menu' to return to the previous menu.\n\n\n");
 								string refinedSearch = Console.ReadLine().ToLower();
