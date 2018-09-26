@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Equipment_Catalogue
 {
@@ -10,6 +11,16 @@ namespace Equipment_Catalogue
 	{
 		static void Main(string[] args)
 		{
+
+			
+
+
+
+
+
+
+
+
 
 			try
 			{
@@ -47,8 +58,6 @@ namespace Equipment_Catalogue
 						new Shield(5, "Shield of the Watch", "Shield",
 													"Shield AC", "Rare", 14, 22, 1, 2)
 				});
-
-
 
 
 				string searchResult = null;
@@ -120,8 +129,8 @@ namespace Equipment_Catalogue
 
 								Console.WriteLine("Enter an item attribute to return a list of matching items.\n" +
 									"Choose from the following list of item attributes. [Not Case Sensitive]\n\n" +
-									"[1] [AC_Type: Deflection, Natural, Armor, Dodge, Shield]\n" +
-									"[2] [Can_Be_Found_In_Area: <Type an Area> Rare, BUR, Avernus, Dis, Min]\n\n");
+									"[1] [AC Type: <Type One of the Following AC Type's> Deflection, Natural, Armor, Dodge, Shield]\n" +
+									"[2] [Can Be Found In Area: <Type One of the Following Areas> Rare, BUR, Avernus, Dis, Min]\n\n");
 								Console.WriteLine("Type 'main-menu' to return to the previous menu.\n\n\n");
 								string refinedSearch = Console.ReadLine().ToLower();
 								if (refinedSearch == "main-menu".ToLower())
@@ -186,7 +195,7 @@ namespace Equipment_Catalogue
 					// prompt that will instruct a user to choose a list of items,
 					// or will instruct the user to enter an item by name.
 
-					Console.WriteLine("Choose a list of items,\nor enter the name of the item directly.\n\n");
+					Console.WriteLine("Main Menu: \n\n\nChoose a list of items,\nor enter the name of the item directly.\n\n");
 					Console.WriteLine("[Enter 1 for a List of the Entire Equipment Catalogue]\n" +
 						"[Enter 2 for a List of Armor]\n[Enter 3 for a List of Shields]\n" +
 						"[Enter 4 for a List of Cloaks]\n" +
@@ -195,21 +204,13 @@ namespace Equipment_Catalogue
 					searchResult = Console.ReadLine().ToLower();
 					// base class method used to format text results
 					equipment.GimmeSomeSpace();
-
 				}
-
-
-
-
-
-
 			}
 			// Test for 'null or empty string for Equipment_Name' is successful.
 			catch (Exception ex)
 			{
 				Console.WriteLine("Exception: " + ex.Message);
 				Console.Read();
-
 			}
 		}
 
