@@ -32,5 +32,10 @@ namespace Equipment_Catalogue
 
 
 
+		// original project solution has the override and virtual methods for use with subclasses, in addition
+		// to some custom properties.  Can't use those yet, until I learn how to deserialize into various
+		// sub-classes all at once; unless i want to rewrite the methods and classes to account
+		// for using for loops to add sub-classes to an equipment catalogue.  Food for thought.
+
 	}
 }

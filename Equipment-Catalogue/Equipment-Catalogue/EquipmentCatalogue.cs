@@ -20,8 +20,8 @@ namespace Equipment_Catalogue
 		// computed property, using an expresion body, for number of items in the Equipment[] array
 		public int NumberOfItems => _items.Count;
 
-		// public constructor that takes an array of Equipment items and sets the private 
-		// field to that value. // I plan to pass in JSON data to this constructor.
+		// public constructor that takes a List of Equipment items and sets the private 
+		// field to that value.  I plan to pass in JSON data to this constructor.
 		public EquipmentCatalogue(List<Equipment> items)
 		{
 			_items = items;
@@ -33,13 +33,10 @@ namespace Equipment_Catalogue
 			Equipment itemToReturn = null;
 			foreach (var item in _items)
 			{
-				//if ((System.Text.RegularExpressions.Regex.IsMatch(item.Equipment_Name.ToLower(), criteria.ToLower(), System.Text.RegularExpressions.RegexOptions.IgnoreCase)))
-				//{
-				//	itemToReturn = item;
 
-				//}
 
-				// this doesn't restrict results from single letter input.  it returns partial matches. I'd rather be more restrictive.
+				// this doesn't restrict results from single letter input.  it returns partial matches.
+				// I'd rather be more restrictive.  This goes on the todo list.
 				if (item.Equipment_Name.ToLower().Contains(criteria.ToLower()))
 				{
 					itemToReturn = item;
@@ -59,7 +56,7 @@ namespace Equipment_Catalogue
 				if (_list.GetItemAt(i).AC_Type.ToLower().Contains(criteria.ToLower()))
 				{
 					Console.WriteLine("\n\n");
-					// this method would be used like so:    someInstance.GetEquipmentProfile();
+					// this method would be used like so:    someInstanceItemInAListOrArray.GetEquipmentProfile();
 					_list.GetItemAt(i).GetEquipmentProfile();
 					Console.WriteLine("\n\n");
 				}
@@ -104,7 +101,8 @@ namespace Equipment_Catalogue
 		// Equipment types as parameters.  This program will print out the profile of the specific
 		// equipment types inputted by the user.
 		// we will call this from the main method and pass in various Equipment Types, and the
-		// equipment catalogue.
+		// equipment catalogue.  Later I will use this with lists of sub-classes; so i'll keep as is for now, even though
+		// I could just use a string variable for equipmentItem.
 		public void DetectEquipmentType(EquipmentCatalogue _list, Equipment equipmentItem)
 		{
 			for (var i = 0; i < NumberOfItems; i++)
