@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Equipment_Catalogue
 {
@@ -12,18 +13,17 @@ namespace Equipment_Catalogue
 		static void Main(string[] args)
 		{
 
-			
-
-
-
-
-
-
-
-
-
 			try
 			{
+
+				string currentDirectory = Directory.GetCurrentDirectory();
+				DirectoryInfo directory = new DirectoryInfo(currentDirectory);
+				var fileName = Path.Combine(directory.FullName, "equipment.json");
+				var equipmentList = DeserializeEquipment(fileName);
+				// instantiate EquipmentCatalogue class from the JSON data deserialized named
+				// equipmentList.
+				var equipmentCatalogue = new EquipmentCatalogue(equipmentList);
+
 
 				// Introduction to the user:
 				Console.WriteLine("Hello, and welcome to the HG-Equipment Catalogue Manager!\n\n"+
@@ -35,29 +35,9 @@ namespace Equipment_Catalogue
 
 				// instantiate an Equipment type so that we can use its generic methods.
 				var equipment = new Equipment();
-
-				// instantiate the armor, shield, and cloak types for use in my subtype detector method
 				var armor = new Armor("Armor");
 				var shield = new Shield("Shield");
 				var cloak = new Cloak("Cloak");
-
-
-				// instantiate EquipmentCatalogue class and assign it values.
-				var equipmentCatalogue = new EquipmentCatalogue(new Equipment[]
-				{
-						new Armor(1, "Thor's Armor", "Armor",
-														"Armor AC", "BUR", 20,
-														100, 0, 0),
-						new Armor(2, "Miles Armor", "Armor",
-														"Armor AC", "BUR", 19,
-														100, 0, 0),
-						new Cloak(3, "Cloak of Protection", "Cloak",
-													"Deflection AC", "Abyss Pit", 20, 100),
-						new Cloak(4, "Cloak of the Blessed", "Cloak",
-													"Deflection AC", "Dustbone's Lair", 18, 100),
-						new Shield(5, "Shield of the Watch", "Shield",
-													"Shield AC", "Rare", 14, 22, 1, 2)
-				});
 
 
 				string searchResult = null;
@@ -131,8 +111,8 @@ namespace Equipment_Catalogue
 
 								Console.WriteLine("Enter an item attribute to return a list of matching items.\n" +
 									"Choose from the following list of item attributes. [Not Case Sensitive]\n\n" +
-									"[1] [AC Type: <Type One of the Following AC Types> Deflection, Natural, Armor, Dodge, Shield]\n" +
-									"[2] [Can Be Found In Area: <Type One of the Following Areas> Rare, BUR, Avernus, Dis, Min]\n\n");
+									"[1] [AC Type: <Type One of the Following AC Types> Deflection, Armor, Shield]\n" +
+									"[2] [Can Be Found In Area: <Type One of the Following Areas> Rare, BUR, Dis, Min]\n\n");
 								Console.WriteLine("Type 'main-menu' to return to the previous menu.\n\n\n");
 								string refinedSearch = Console.ReadLine().ToLower();
 								if (refinedSearch == "main-menu".ToLower())
@@ -142,11 +122,10 @@ namespace Equipment_Catalogue
 								else
 								{
 									// i'll add string matching later; for now this is workable solution. https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex.ismatch?view=netframework-4.7.2
-									if (refinedSearch != "Deflection".ToLower() && refinedSearch != "Natural".ToLower() && refinedSearch != "Armor".ToLower()
-											&& refinedSearch != "Dodge".ToLower() && refinedSearch != "Shield".ToLower() &&
+									if (refinedSearch != "Deflection".ToLower() && refinedSearch != "Armor".ToLower()
+											&& refinedSearch != "Shield".ToLower() &&
 											refinedSearch != "Rare".ToLower() && refinedSearch != "BUR".ToLower() &&
-											refinedSearch != "Avernus".ToLower() && refinedSearch != "Dis".ToLower()
-											&& refinedSearch != "Min".ToLower())
+										  refinedSearch != "Dis".ToLower() && refinedSearch != "Min".ToLower())
 									{
 										Console.WriteLine("\n\nThat attribute is not in our database. Please make a new " +
 											"selection.\n\n");
@@ -182,7 +161,7 @@ namespace Equipment_Catalogue
 							}
 							else
 							{
-								Console.WriteLine("Item not found. If you were trying to find an item by attribute " +
+								Console.WriteLine("Item not found. If you were trying to find an item by attribute, " +
 									"first enter 5 and then type the name of the attribute.\n\n");
 							}
 						}
@@ -220,6 +199,24 @@ namespace Equipment_Catalogue
 
 
 
+		// attempting to deserialize a json file into one equipmentCatalogue class
+		// that contains three subclasses of the equipment base class.
+		// https://teamtreehouse.com/library/deserializing-with-jsonnet
+
+
+
+		public static List<Equipment> DeserializeEquipment(string fileName)
+		{
+			var equipmentList = new List<Equipment>();
+			var serializer = new JsonSerializer();
+			using (var reader = new StreamReader(fileName))
+			using (var jsonReader = new JsonTextReader(reader))
+			{
+				equipmentList = serializer.Deserialize<List<Equipment>>(jsonReader);
+			}
+				
+			return equipmentList;
+		}
 
 
 
