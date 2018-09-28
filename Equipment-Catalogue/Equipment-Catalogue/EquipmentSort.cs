@@ -27,11 +27,11 @@ namespace Equipment_Catalogue
 		{
 			if (Attribute == "AC Bonus".ToLower())
 			{
-				return x.AC_Bonus.CompareTo(y.AC_Bonus);
+				return x.AC_Bonus.CompareTo(y.AC_Bonus) * -1;
 			}
 			else if (Attribute == "MAX DEX Bonus".ToLower())
 			{
-				return x.MAX_DEX_Bonus.CompareTo(y.MAX_DEX_Bonus);
+				return x.MAX_DEX_Bonus.CompareTo(y.MAX_DEX_Bonus) * -1;
 			}
 			else if (Attribute == "Armor Check Penalty".ToLower())
 			{
@@ -39,7 +39,7 @@ namespace Equipment_Catalogue
 			}
 			else if (Attribute == "Base AC".ToLower())
 			{
-				return x.Base_AC.CompareTo(y.Base_AC);
+				return x.Base_AC.CompareTo(y.Base_AC) * -1;
 			}
 			return 0;
 		}

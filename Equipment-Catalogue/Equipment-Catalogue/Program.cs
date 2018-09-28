@@ -253,7 +253,7 @@ namespace Equipment_Catalogue
 					"		Choose from the following list of item attributes. [Not Case Sensitive]\n\n" +
 					"		[1] [AC Type:] <Type One of the Following AC Types>\n" +
 					"   \t\t\t{Deflection, Armor, Shield}\n" +
-					"		[2] [Attribute Sort : Ascending] <Type One of the Following Attributes>\n" +
+					"		[2] [Attribute Sort : Best to Worst] <Type One of the Following Attributes>\n" +
 					"   \t\t\t{AC Bonus, MAX DEX Bonus, Armor Check Penalty, Base AC}\n" +
 					"		[3] [Can Be Found In Area:] <Type One of the Following Areas>\n" +
 					"   \t\t\t{Rare, BUR, Dis, Min}\n\n" +
