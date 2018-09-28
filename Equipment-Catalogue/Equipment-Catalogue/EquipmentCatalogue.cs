@@ -72,7 +72,7 @@ namespace Equipment_Catalogue
 			{
 				// this method would be used like so:    someInstance.GetEquipmentProfile();
 				_list.GetItemAt(i).GetEquipmentProfile();
-				Console.WriteLine("\n\n");
+				
 			}
 		}
 		// creating a method that will return a specific Equipment item from the 
@@ -108,22 +108,19 @@ namespace Equipment_Catalogue
 				{
 					Console.WriteLine("		" + _list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Armor");
 					// this method would be used like so:    someInstance.GetEquipmentProfile();
-					_list.GetItemAt(i).GetEquipmentProfile();
-					Console.WriteLine("\n\n");
+					_list.GetItemAt(i).GetEquipmentProfile();	
 				}
 				if (equipmentItem is Shield && _list.GetItemAt(i).Equipment_Type == "Shield")
 				{
 					Console.WriteLine("		" + _list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Shield");
 					// this method would be used like so:    someInstance.GetEquipmentProfile();
-					_list.GetItemAt(i).GetEquipmentProfile();
-					Console.WriteLine("\n\n");
+					_list.GetItemAt(i).GetEquipmentProfile();		
 				}
 				if (equipmentItem is Cloak && _list.GetItemAt(i).Equipment_Type == "Cloak")
 				{
 					Console.WriteLine("		" + _list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Cloak");
 					// this method would be used like so:    someInstance.GetEquipmentProfile();
-					_list.GetItemAt(i).GetEquipmentProfile();
-					Console.WriteLine("\n\n");
+					_list.GetItemAt(i).GetEquipmentProfile();		
 				}
 				// i will look into making a fail safe later, in case an unrecognized subtype is encountered.
 				// it works thus far as is, so I'm moving on to satisfying course requirements as priority.

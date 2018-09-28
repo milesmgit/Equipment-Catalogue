@@ -72,6 +72,8 @@ namespace Equipment_Catalogue
 				// Main Menu Instructions 
 				MainMenuInstructions();
 
+				// this bit gives formatting space to the console readline output
+				Console.Write("		");
 				searchResult = Console.ReadLine().ToLower();
 				int list;
 
@@ -125,6 +127,8 @@ namespace Equipment_Catalogue
 								// refined search text menu instructions method
 								RefinedMenuInstructions();
 
+								// this gives formatting space to the readline output
+								Console.Write("		");
 								string refinedSearch = Console.ReadLine().ToLower();
 
 								// base class method used to format text results
@@ -239,6 +243,8 @@ namespace Equipment_Catalogue
 					// Main Menu Instructions
 					MainMenuInstructions();
 
+					// this gives formatting space to the readline output
+					Console.Write("		");
 					searchResult = Console.ReadLine().ToLower();
 					// base class method used to format text results
 					equipment.GimmeSomeSpace();
@@ -248,6 +254,8 @@ namespace Equipment_Catalogue
 			catch (Exception ex)
 			{
 				Console.WriteLine("Exception: " + ex.Message);
+				// this gives formatting space to the readline output
+				Console.Write("		");
 				Console.Read();
 			}
 		}
