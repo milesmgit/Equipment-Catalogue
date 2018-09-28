@@ -150,24 +150,6 @@ namespace Equipment_Catalogue
 
 											serialToJSON(sorted_List);
 
-
-
-											//var printToFile = "";
-											//Console.Write("		Print to File 'favoriteloot.json'? <Type: y or n>");
-											//printToFile = Console.ReadLine();
-
-											//if (printToFile == "y")
-											//{
-											//	// serialize json file
-											//	var fileNameOut = Path.Combine(directory.FullName, "favoriteloot.json");
-											//	SerializeEquipmentToFile(sorted_List, fileNameOut);
-											//	Console.WriteLine("Your selection has been saved.");
-											//}
-											//else
-											//{
-											//	Console.WriteLine("Your selection has not been saved.");
-											//}
-
 										}
 										// this block aims to sort (Ascending) object instances in a list by MAX_DEX_Bonus attribute.
 										else if (refinedSearch == "MAX DEX Bonus".ToLower())
@@ -233,8 +215,8 @@ namespace Equipment_Catalogue
 							}
 							else
 							{
-								Console.WriteLine("		Item not found. If you were trying to find an item by attribute, " +
-									"first enter 5 and then type the name of the attribute.\n\n");
+								Console.WriteLine("\n\n		Item not found. If you were trying to find an item by attribute,\n" +
+									"\t\tfirst enter 5 and then type the name of the attribute.\n\n");
 							}
 						}
 						else
