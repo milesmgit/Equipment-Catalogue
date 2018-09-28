@@ -329,7 +329,7 @@ namespace Equipment_Catalogue
 					"		+0)))))(+)>>>>>>>>>>>>>>>>>>>>        ***+***\n" +
 					"		        (                              **+**\n" +
 					"                         )                              *+*\n\n" +
-					"		Hello, and welcome to the HG-Equipment Catalogue Manager!\n\n" +
+					"		Hello, and welcome to the HG Equipment Catalogue Manager!\n\n" +
 					"		This program's purpose is to provide a searchable database of the module's \n" +
 					"		gear. The aim is to make it easier to build characters due to possessing a foreknowledge\n" +
 					"		of item drops. You can search the entire equipment catalogue at once, or by categories.\n\n" +
