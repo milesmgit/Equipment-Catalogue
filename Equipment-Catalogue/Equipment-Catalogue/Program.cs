@@ -153,15 +153,8 @@ namespace Equipment_Catalogue
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
 											foreach (var piece in sorted_List)
 											{
-												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
-													$"Item Name: {piece.Equipment_Name}\n" +
-													$"Item Type: {piece.Equipment_Type}\n" +
-													$"Item Armor Class Type: {piece.AC_Type}\n" +
-													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
-													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
-													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
-													$"Item Base Armor Class: {piece.Base_AC}\n" +
-													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+												// print out equipment profile
+												Print_Sort(piece);
 											}
 										}
 										// this block aims to sort (Ascending) object instances in a list by MAX_DEX_Bonus attribute.
@@ -170,15 +163,8 @@ namespace Equipment_Catalogue
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
 											foreach (var piece in sorted_List)
 											{
-												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
-													$"Item Name: {piece.Equipment_Name}\n" +
-													$"Item Type: {piece.Equipment_Type}\n" +
-													$"Item Armor Class Type: {piece.AC_Type}\n" +
-													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
-													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
-													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
-													$"Item Base Armor Class: {piece.Base_AC}\n" +
-													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+												// print out equipment profile
+												Print_Sort(piece);
 											}
 										}
 										// this block aims to sort (Ascending) object instances in a list by Armor Check Penalty attribute.
@@ -187,15 +173,8 @@ namespace Equipment_Catalogue
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
 											foreach (var piece in sorted_List)
 											{
-												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
-													$"Item Name: {piece.Equipment_Name}\n" +
-													$"Item Type: {piece.Equipment_Type}\n" +
-													$"Item Armor Class Type: {piece.AC_Type}\n" +
-													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
-													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
-													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
-													$"Item Base Armor Class: {piece.Base_AC}\n" +
-													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+												// print out equipment profile
+												Print_Sort(piece);
 											}
 										}
 										// this block aims to sort (Ascending) object instances in a list by AC_Bonus attribute.
@@ -204,15 +183,8 @@ namespace Equipment_Catalogue
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
 											foreach (var piece in sorted_List)
 											{
-												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
-													$"Item Name: {piece.Equipment_Name}\n" +
-													$"Item Type: {piece.Equipment_Type}\n" +
-													$"Item Armor Class Type: {piece.AC_Type}\n" +
-													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
-													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
-													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
-													$"Item Base Armor Class: {piece.Base_AC}\n" +
-													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+												// print out equipment profile
+												Print_Sort(piece);
 											}
 										}
 										else
@@ -329,6 +301,20 @@ namespace Equipment_Catalogue
 			}
 			return sorted_List;
 		}
+
+		public static void Print_Sort(Equipment piece)
+		{
+			Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
+													$"Item Name: {piece.Equipment_Name}\n" +
+													$"Item Type: {piece.Equipment_Type}\n" +
+													$"Item Armor Class Type: {piece.AC_Type}\n" +
+													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
+													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
+													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
+													$"Item Base Armor Class: {piece.Base_AC}\n" +
+													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+		}
+
 
 
 	}
