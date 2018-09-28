@@ -49,6 +49,7 @@
     <Compile Include="Cloak.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="EquipmentCatalogue.cs" />
+    <Compile Include="EquipmentSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shield.cs" />

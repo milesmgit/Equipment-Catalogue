@@ -20,9 +20,15 @@ namespace Equipment_Catalogue
 				DirectoryInfo directory = new DirectoryInfo(currentDirectory);
 				var fileName = Path.Combine(directory.FullName, "equipment.json");
 				var equipmentList = DeserializeEquipment(fileName);
+
+				// this list is for my AC_Bonus sort function:  I need to learn how to add and use 
+				// overloads so that I can add more tests.  As is, I can only return AC_Bonus unless
+				// I add a new class for each attribute.
+				var equipmentSort = DeserializeEquipment(fileName);
 				// instantiate EquipmentCatalogue class from the JSON data deserialized named
 				// equipmentList.
 				var equipmentCatalogue = new EquipmentCatalogue(equipmentList);
+				
 
 
 				// Introduction to the user: Could place this in a static method at the bottom to make it cleaner.
@@ -119,6 +125,10 @@ namespace Equipment_Catalogue
 								RefinedMenuInstructions();
 
 								string refinedSearch = Console.ReadLine().ToLower();
+
+								// base class method used to format text results
+								equipment.GimmeSomeSpace();
+
 								if (refinedSearch == "main-menu".ToLower())
 								{
 									// program will loop back to main-menu by default.
@@ -128,7 +138,7 @@ namespace Equipment_Catalogue
 									// i'll add string matching later; for now this is workable solution. https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex.ismatch?view=netframework-4.7.2
 									// i could use get index of, and if need be a ! operator; if refinedSearch not in the string array list, proceed
 									if (refinedSearch != "Deflection".ToLower() && refinedSearch != "Armor".ToLower()
-											&& refinedSearch != "Shield".ToLower() &&
+											&& refinedSearch != "Shield".ToLower() && refinedSearch != "AC Bonus".ToLower() &&
 											refinedSearch != "Rare".ToLower() && refinedSearch != "BUR".ToLower() &&
 											refinedSearch != "Dis".ToLower() && refinedSearch != "Min".ToLower())
 									{
@@ -137,9 +147,28 @@ namespace Equipment_Catalogue
 									}
 									else
 									{
-										// method that will list the equipment profile of each item in the equipmentCatalogue
-										// to the console. I'm using the computed property 'NumberOfItems' in place of _items.Count.
-										equipmentCatalogue.DisplayEquipmentCategory(equipmentCatalogue, refinedSearch);
+										if (refinedSearch == "AC Bonus".ToLower())
+										{
+											var sorted_AC_Bonus_List = SortAttributeList(equipmentSort);
+											foreach (var piece in sorted_AC_Bonus_List)
+											{
+												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
+													$"Item Name: {piece.Equipment_Name}\n" +
+													$"Item Type: {piece.Equipment_Type}\n" +
+													$"Item Armor Class Type: {piece.AC_Type}\n" +
+													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
+													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
+													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
+													$"Item Base Armor Class: {piece.Base_AC}\n" +
+													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+											}
+										}
+										else
+										{
+											// method that will list the equipment profile of each item in the equipmentCatalogue
+											// to the console. I'm using the computed property 'NumberOfItems' in place of _items.Count.
+											equipmentCatalogue.DisplayEquipmentCategory(equipmentCatalogue, refinedSearch);
+										}
 									}
 								}
 							}
@@ -219,7 +248,9 @@ namespace Equipment_Catalogue
 		{
 			Console.WriteLine("Enter an item attribute to return a list of matching items.\n" +
 					"Choose from the following list of item attributes. [Not Case Sensitive]\n\n" +
-					"[1] [AC Type: <Type One of the Following AC Types> Deflection, Armor, Shield]\n" +								"[2] [Can Be Found In Area: <Type One of the Following Areas> Rare, BUR, Dis, Min]\n\n" +
+					"[1] [AC Type: <Type One of the Following AC Types> Deflection, Armor, Shield]\n" +
+					"[2] [AC_Bonus: <Type 'AC Bonus' for a Sorted List of Items By AC Bonus>]\n" +
+					"[3] [Can Be Found In Area: <Type One of the Following Areas> Rare, BUR, Dis, Min]\n\n" +
 					"Type 'main-menu' to return to the previous menu.\n\n\n");
 		}
 
@@ -232,6 +263,19 @@ namespace Equipment_Catalogue
 				"[Enter 4 for a List of Cloaks]\n" +
 				"[Enter 5 for a Refined Search by Equipment Attribute]\n\n" +
 				"[Type quit to terminate the program.]\n\n");
+		}
+
+		public static List<Equipment> SortAttributeList(List<Equipment> equipmentSort)
+		{
+			var sorted_AC_BonusList = new List<Equipment>();
+
+			equipmentSort.Sort(new EquipmentSort());
+
+			foreach (var equipment in equipmentSort)
+			{
+				sorted_AC_BonusList.Add(equipment);
+			}
+			return sorted_AC_BonusList;
 		}
 
 
