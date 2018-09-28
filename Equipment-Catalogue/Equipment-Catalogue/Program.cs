@@ -147,9 +147,10 @@ namespace Equipment_Catalogue
 									}
 									else
 									{
+										// this block aims to sort (Ascending) object instances in a list by AC_Bonus attribute.
 										if (refinedSearch == "AC Bonus".ToLower())
 										{
-											var sorted_AC_Bonus_List = SortAttributeList(equipmentSort);
+											var sorted_AC_Bonus_List = Sort_AC_Bonus_List(equipmentSort);
 											foreach (var piece in sorted_AC_Bonus_List)
 											{
 												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
@@ -265,7 +266,7 @@ namespace Equipment_Catalogue
 				"[Type quit to terminate the program.]\n\n");
 		}
 
-		public static List<Equipment> SortAttributeList(List<Equipment> equipmentSort)
+		public static List<Equipment> Sort_AC_Bonus_List(List<Equipment> equipmentSort)
 		{
 			var sorted_AC_BonusList = new List<Equipment>();
 
