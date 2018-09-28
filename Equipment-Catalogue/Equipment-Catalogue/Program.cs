@@ -139,7 +139,7 @@ namespace Equipment_Catalogue
 									// i could use get index of, and if need be a ! operator; if refinedSearch not in the string array list, proceed
 									if (refinedSearch != "Deflection".ToLower() && refinedSearch != "Armor".ToLower()
 											&& refinedSearch != "Shield".ToLower() && refinedSearch != "AC Bonus".ToLower() &&
-											refinedSearch != "Rare".ToLower() && refinedSearch != "BUR".ToLower() &&
+											refinedSearch != "Base AC".ToLower() && refinedSearch != "MAX DEX Bonus".ToLower() && refinedSearch != "Armor Check Penalty".ToLower() && refinedSearch != "Rare".ToLower() && refinedSearch != "BUR".ToLower() &&
 											refinedSearch != "Dis".ToLower() && refinedSearch != "Min".ToLower())
 									{
 										Console.WriteLine("\n\nThat attribute is not in our database. Please make a new " +
@@ -150,8 +150,59 @@ namespace Equipment_Catalogue
 										// this block aims to sort (Ascending) object instances in a list by AC_Bonus attribute.
 										if (refinedSearch == "AC Bonus".ToLower())
 										{
-											var sorted_AC_Bonus_List = Sort_AC_Bonus_List(equipmentSort);
-											foreach (var piece in sorted_AC_Bonus_List)
+											var sorted_List = Sort_List(equipmentSort, refinedSearch);
+											foreach (var piece in sorted_List)
+											{
+												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
+													$"Item Name: {piece.Equipment_Name}\n" +
+													$"Item Type: {piece.Equipment_Type}\n" +
+													$"Item Armor Class Type: {piece.AC_Type}\n" +
+													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
+													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
+													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
+													$"Item Base Armor Class: {piece.Base_AC}\n" +
+													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+											}
+										}
+										// this block aims to sort (Ascending) object instances in a list by MAX_DEX_Bonus attribute.
+										else if (refinedSearch == "MAX DEX Bonus".ToLower())
+										{
+											var sorted_List = Sort_List(equipmentSort, refinedSearch);
+											foreach (var piece in sorted_List)
+											{
+												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
+													$"Item Name: {piece.Equipment_Name}\n" +
+													$"Item Type: {piece.Equipment_Type}\n" +
+													$"Item Armor Class Type: {piece.AC_Type}\n" +
+													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
+													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
+													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
+													$"Item Base Armor Class: {piece.Base_AC}\n" +
+													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+											}
+										}
+										// this block aims to sort (Ascending) object instances in a list by Armor Check Penalty attribute.
+										else if (refinedSearch == "Armor Check Penalty".ToLower())
+										{
+											var sorted_List = Sort_List(equipmentSort, refinedSearch);
+											foreach (var piece in sorted_List)
+											{
+												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
+													$"Item Name: {piece.Equipment_Name}\n" +
+													$"Item Type: {piece.Equipment_Type}\n" +
+													$"Item Armor Class Type: {piece.AC_Type}\n" +
+													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
+													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
+													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
+													$"Item Base Armor Class: {piece.Base_AC}\n" +
+													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+											}
+										}
+										// this block aims to sort (Ascending) object instances in a list by AC_Bonus attribute.
+										else if (refinedSearch == "Base AC".ToLower())
+										{
+											var sorted_List = Sort_List(equipmentSort, refinedSearch);
+											foreach (var piece in sorted_List)
 											{
 												Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
 													$"Item Name: {piece.Equipment_Name}\n" +
@@ -266,17 +317,17 @@ namespace Equipment_Catalogue
 				"[Type quit to terminate the program.]\n\n");
 		}
 
-		public static List<Equipment> Sort_AC_Bonus_List(List<Equipment> equipmentSort)
+		public static List<Equipment> Sort_List(List<Equipment> equipmentSort, string attribute)
 		{
-			var sorted_AC_BonusList = new List<Equipment>();
+			var sorted_List = new List<Equipment>();
 
-			equipmentSort.Sort(new EquipmentSort());
+			equipmentSort.Sort(new EquipmentSort(attribute));
 
 			foreach (var equipment in equipmentSort)
 			{
-				sorted_AC_BonusList.Add(equipment);
+				sorted_List.Add(equipment);
 			}
-			return sorted_AC_BonusList;
+			return sorted_List;
 		}
 
 

@@ -12,9 +12,35 @@ namespace Equipment_Catalogue
 	// this method will be used to list the items by lowest to highest ac bonus.
 	public class EquipmentSort : IComparer<Equipment>
 	{
+
+		public string Attribute { get; set; }
+
+		public EquipmentSort(string attribute)
+		{
+			Attribute = attribute;
+
+		}
+
+
 		public int Compare(Equipment x, Equipment y)
 		{
-			return x.AC_Bonus.CompareTo(y.AC_Bonus);
+			if (Attribute == "AC Bonus".ToLower())
+			{
+				return x.AC_Bonus.CompareTo(y.AC_Bonus);
+			}
+			else if (Attribute == "MAX DEX Bonus".ToLower())
+			{
+				return x.MAX_DEX_Bonus.CompareTo(y.MAX_DEX_Bonus);
+			}
+			else if (Attribute == "Armor Check Penalty".ToLower())
+			{
+				return x.Armor_Check_Penalty.CompareTo(y.Armor_Check_Penalty);
+			}
+			else if (Attribute == "Base AC".ToLower())
+			{
+				return x.Base_AC.CompareTo(y.Base_AC);
+			}
+			return 0;
 		}
 		
 	}
