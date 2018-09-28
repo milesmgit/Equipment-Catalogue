@@ -85,7 +85,7 @@ namespace Equipment_Catalogue
 			}
 			else
 			{
-				Console.WriteLine("An element at index " + index + " doesn't exist in the Equipment Catalogue.");
+				Console.WriteLine("		An element at index " + index + " doesn't exist in the Equipment Catalogue.");
 				return null;
 			}
 		}
@@ -106,21 +106,21 @@ namespace Equipment_Catalogue
 				}
 				if (equipmentItem is Armor && _list.GetItemAt(i).Equipment_Type == "Armor")
 				{
-					Console.WriteLine(_list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Armor");
+					Console.WriteLine("		" + _list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Armor");
 					// this method would be used like so:    someInstance.GetEquipmentProfile();
 					_list.GetItemAt(i).GetEquipmentProfile();
 					Console.WriteLine("\n\n");
 				}
 				if (equipmentItem is Shield && _list.GetItemAt(i).Equipment_Type == "Shield")
 				{
-					Console.WriteLine(_list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Shield");
+					Console.WriteLine("		" + _list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Shield");
 					// this method would be used like so:    someInstance.GetEquipmentProfile();
 					_list.GetItemAt(i).GetEquipmentProfile();
 					Console.WriteLine("\n\n");
 				}
 				if (equipmentItem is Cloak && _list.GetItemAt(i).Equipment_Type == "Cloak")
 				{
-					Console.WriteLine(_list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Cloak");
+					Console.WriteLine("		" + _list.GetItemAt(i).Equipment_Name + " is of Equipment Type: Cloak");
 					// this method would be used like so:    someInstance.GetEquipmentProfile();
 					_list.GetItemAt(i).GetEquipmentProfile();
 					Console.WriteLine("\n\n");

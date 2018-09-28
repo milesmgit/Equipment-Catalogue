@@ -119,15 +119,15 @@ namespace Equipment_Catalogue
 		// this method would be used like so:    someInstance.GetEquipmentProfile();
 		public void GetEquipmentProfile()
 		{
-			Console.WriteLine($"Item ID: {Equipment_ID}\n" +
-				$"Item Name: {Equipment_Name}\n" +
-				$"Item Type: {Equipment_Type}\n" +
-				$"Item Armor Class Type: {AC_Type}\n" +
-				$"Item Known Location(s): {Can_Be_Found_In_Area}\n" +
-				$"Item Armor Class Bonus: {AC_Bonus}\n" +
-				$"Item Maximum Dexterity Bonus: {MAX_DEX_Bonus}\n" +
-				$"Item Base Armor Class: {Base_AC}\n" +
-				$"Item Armor Check Penalty: {Armor_Check_Penalty}\n\n");
+			Console.WriteLine($"		Item ID: {Equipment_ID}\n" +
+				$"		Item Name: {Equipment_Name}\n" +
+				$"		Item Type: {Equipment_Type}\n" +
+				$"		Item Armor Class Type: {AC_Type}\n" +
+				$"		Item Known Location(s): {Can_Be_Found_In_Area}\n" +
+				$"		Item Armor Class Bonus: {AC_Bonus}\n" +
+				$"		Item Maximum Dexterity Bonus: {MAX_DEX_Bonus}\n" +
+				$"		Item Base Armor Class: {Base_AC}\n" +
+				$"		Item Armor Check Penalty: {Armor_Check_Penalty}\n\n");
 		}
 		// method to give space between method calls  [purpose: formatting]
 		public void GimmeSomeSpace()

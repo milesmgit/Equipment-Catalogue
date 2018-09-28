@@ -21,7 +21,8 @@ namespace Equipment_Catalogue
 
 		}
 
-
+		// this method takes a string from the class constructor, and passes it into the
+		// logic; the goal is to print out sorted lists based upon input attribute string.
 		public int Compare(Equipment x, Equipment y)
 		{
 			if (Attribute == "AC Bonus".ToLower())

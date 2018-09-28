@@ -32,12 +32,13 @@ namespace Equipment_Catalogue
 
 
 				// Introduction to the user: Could place this in a static method at the bottom to make it cleaner.
-				Console.WriteLine("Hello, and welcome to the HG-Equipment Catalogue Manager!\n\n" +
-					"This program's purpose is to provide a searchable database of the module's " +
-					"gear.\nThe aim is to make it easier to build characters due to possessing a foreknowledge\n" +
-					"of item drops. You can search the entire equipment catalogue at once, or by categories.\n\n" +
-					"I hope you find the program easy to use, and please do offer suggestions for improving\n" +
-					"your user experience. Happy hunting -- Miles\n\n\n");
+				Console.WriteLine("\n\n\n" +
+							"		Hello, and welcome to the HG-Equipment Catalogue Manager!\n\n" +
+							"		This program's purpose is to provide a searchable database of the module's \n" +
+							"		gear. The aim is to make it easier to build characters due to possessing a foreknowledge\n" +
+							"		of item drops. You can search the entire equipment catalogue at once, or by categories.\n\n" +
+							"		I hope you find the program easy to use, and please do offer suggestions for improving\n" +
+							"		your user experience. Happy hunting -- Miles\n\n\n");
 
 				// instantiate an Equipment type so that we can use its generic methods.
 				var equipment = new Equipment();
@@ -89,7 +90,7 @@ namespace Equipment_Catalogue
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
 								//// calling from equipmentCatalogue the NumberOfItems computed property.
-								Console.WriteLine($"There are presently {equipmentCatalogue.NumberOfItems} items in the Equipment Catalogue.\n\n\n");
+								Console.WriteLine($"		There are presently {equipmentCatalogue.NumberOfItems} items in the Equipment Catalogue.\n\n\n");
 								// add list of equipment here
 								equipmentCatalogue.DisplayEquipmentCatalogue(equipmentCatalogue);
 							}
@@ -129,7 +130,7 @@ namespace Equipment_Catalogue
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
 
-								if (refinedSearch == "main-menu".ToLower())
+								if (refinedSearch == "		main-menu".ToLower())
 								{
 									// program will loop back to main-menu by default.
 								}
@@ -142,7 +143,7 @@ namespace Equipment_Catalogue
 											refinedSearch != "Base AC".ToLower() && refinedSearch != "MAX DEX Bonus".ToLower() && refinedSearch != "Armor Check Penalty".ToLower() && refinedSearch != "Rare".ToLower() && refinedSearch != "BUR".ToLower() &&
 											refinedSearch != "Dis".ToLower() && refinedSearch != "Min".ToLower())
 									{
-										Console.WriteLine("\n\nThat attribute is not in our database. Please make a new " +
+										Console.WriteLine("\n\n		That attribute is not in our database. Please make a new " +
 											"selection.\n\n");
 									}
 									else
@@ -199,7 +200,7 @@ namespace Equipment_Catalogue
 						}
 						else
 						{
-							Console.WriteLine("Please Enter a Number Between 1-5.");
+							Console.WriteLine("		Please Enter a Number Between 1-5.");
 						}
 					}
 					else
@@ -219,13 +220,13 @@ namespace Equipment_Catalogue
 							}
 							else
 							{
-								Console.WriteLine("Item not found. If you were trying to find an item by attribute, " +
+								Console.WriteLine("		Item not found. If you were trying to find an item by attribute, " +
 									"first enter 5 and then type the name of the attribute.\n\n");
 							}
 						}
 						else
 						{
-							Console.WriteLine("Please choose a number from the list or enter an item name. [Not Case Sensitive]\n\n");
+							Console.WriteLine("		Please choose a number from the list or enter an item name. [Not Case Sensitive]\n\n");
 						}
 					}
 					// base class method used to format text results
@@ -270,23 +271,27 @@ namespace Equipment_Catalogue
 
 		public static void RefinedMenuInstructions()
 		{
-			Console.WriteLine("Enter an item attribute to return a list of matching items.\n" +
-					"Choose from the following list of item attributes. [Not Case Sensitive]\n\n" +
-					"[1] [AC Type: <Type One of the Following AC Types> Deflection, Armor, Shield]\n" +
-					"[2] [AC_Bonus: <Type 'AC Bonus' for a Sorted List of Items By AC Bonus>]\n" +
-					"[3] [Can Be Found In Area: <Type One of the Following Areas> Rare, BUR, Dis, Min]\n\n" +
-					"Type 'main-menu' to return to the previous menu.\n\n\n");
+			Console.WriteLine("		Enter an item attribute to return a list of matching items.\n" +
+					"		Choose from the following list of item attributes. [Not Case Sensitive]\n\n" +
+					"		[1] [AC Type: <Type One of the Following AC Types> Deflection, Armor, Shield]\n" +
+					"		[2] [Attribute Sort: Ascending] \n" +
+					"				[<Type One of the Following Attributes> : ]\n" +
+					"				[AC Bonus, MAX DEX Bonus, Armor Check Penalty, Base AC] [Not Case Sensitive]\n" +
+					"		[3] [Can Be Found In Area: <Type One of the Following Areas> Rare, BUR, Dis, Min]\n\n" +
+					"		Type 'main-menu' to return to the previous menu.\n\n\n");
 		}
 
 
 		public static void MainMenuInstructions()
 		{
-			Console.WriteLine("Main Menu: \n\n\nChoose a list of items,\nor enter the name of the item directly. [Not Case Sensitive]\n\n" +
-				"[Enter 1 for a List of the Entire Equipment Catalogue]\n" +
-				"[Enter 2 for a List of Armor]\n[Enter 3 for a List of Shields]\n" +
-				"[Enter 4 for a List of Cloaks]\n" +
-				"[Enter 5 for a Refined Search by Equipment Attribute]\n\n" +
-				"[Type quit to terminate the program.]\n\n");
+			Console.WriteLine("		Main Menu: \n\n\n" +
+				"		Choose a list of items, or enter the name of the item directly. [Not Case Sensitive]\n\n" +
+				"		[Enter 1 for a List of the Entire Equipment Catalogue]\n" +
+				"		[Enter 2 for a List of Armor]\n" +
+				"		[Enter 3 for a List of Shields]\n" +
+				"		[Enter 4 for a List of Cloaks]\n" +
+				"		[Enter 5 for a Refined Search by Equipment Attribute]\n\n" +
+				"		[Type quit to terminate the program.]\n\n");
 		}
 
 		public static List<Equipment> Sort_List(List<Equipment> equipmentSort, string attribute)
@@ -304,15 +309,15 @@ namespace Equipment_Catalogue
 
 		public static void Print_Sort(Equipment piece)
 		{
-			Console.WriteLine($"Item ID: {piece.Equipment_ID}\n" +
-													$"Item Name: {piece.Equipment_Name}\n" +
-													$"Item Type: {piece.Equipment_Type}\n" +
-													$"Item Armor Class Type: {piece.AC_Type}\n" +
-													$"Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
-													$"Item Armor Class Bonus: {piece.AC_Bonus}\n" +
-													$"Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
-													$"Item Base Armor Class: {piece.Base_AC}\n" +
-													$"Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
+			Console.WriteLine($"		Item ID: {piece.Equipment_ID}\n" +
+													$"		Item Name: {piece.Equipment_Name}\n" +
+													$"		Item Type: {piece.Equipment_Type}\n" +
+													$"		Item Armor Class Type: {piece.AC_Type}\n" +
+													$"		Item Known Location(s): {piece.Can_Be_Found_In_Area}\n" +
+													$"		Item Armor Class Bonus: {piece.AC_Bonus}\n" +
+													$"		Item Maximum Dexterity Bonus: {piece.MAX_DEX_Bonus}\n" +
+													$"		Item Base Armor Class: {piece.Base_AC}\n" +
+													$"		Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
 		}
 
 
