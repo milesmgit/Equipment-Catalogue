@@ -18,6 +18,7 @@ namespace Equipment_Catalogue
 				string currentDirectory = Directory.GetCurrentDirectory();
 				DirectoryInfo directory = new DirectoryInfo(currentDirectory);
 				var fileName = Path.Combine(directory.FullName, "equipment.json");
+				var fileName_favloot = Path.Combine(directory.FullName, "favoriteloot.json");
 				// json data
 				var equipmentList = DeserializeEquipment(fileName);
 
@@ -26,6 +27,8 @@ namespace Equipment_Catalogue
 
 				// instantiate EquipmentCatalogue class from the JSON data 
 				var equipmentCatalogue = new EquipmentCatalogue(equipmentList);
+
+
 
 				// Introduction to the user
 				Intro();
@@ -40,7 +43,7 @@ namespace Equipment_Catalogue
 
 				// ensuring the variable is 'fresh'
 				string searchResult = null;
-				
+
 				// Main Menu Search Instructions 
 				MainMenuInstructions();
 
@@ -55,13 +58,24 @@ namespace Equipment_Catalogue
 					// Using a try Parse to store searchResult into an int variable named list.
 					if (Int32.TryParse(searchResult, out list))
 					{
-						if (list <= 5 && list > 0)
+						if (list <= 5 && list >= 0)
 						{
-							if (list == 1)
+
+							if (list == 0)
+							{
+								// deserializing saved json data back into the program.
+								var jsonPersist = DeserializeEquipment(fileName_favloot);
+								// storing the persisted json data into a new EquipmentCatalogue.
+								var equipmentCatalogue2 = new EquipmentCatalogue(jsonPersist);
+								// method displays full list of equipment here
+								equipmentCatalogue2.DisplayEquipmentCatalogue(equipmentCatalogue2);
+
+							}
+							else if (list == 1)
 							{
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
-								
+
 								Console.WriteLine($"		There are presently {equipmentCatalogue.NumberOfItems} items in the Equipment Catalogue.\n\n\n");
 
 								// method displays full list of equipment here
@@ -127,11 +141,33 @@ namespace Equipment_Catalogue
 										if (refinedSearch == "AC Bonus".ToLower())
 										{
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
+
 											foreach (var piece in sorted_List)
 											{
 												// print out equipment profile
 												Print_Sort(piece);
 											}
+
+											serialToJSON(sorted_List);
+
+
+
+											//var printToFile = "";
+											//Console.Write("		Print to File 'favoriteloot.json'? <Type: y or n>");
+											//printToFile = Console.ReadLine();
+
+											//if (printToFile == "y")
+											//{
+											//	// serialize json file
+											//	var fileNameOut = Path.Combine(directory.FullName, "favoriteloot.json");
+											//	SerializeEquipmentToFile(sorted_List, fileNameOut);
+											//	Console.WriteLine("Your selection has been saved.");
+											//}
+											//else
+											//{
+											//	Console.WriteLine("Your selection has not been saved.");
+											//}
+
 										}
 										// this block aims to sort (Ascending) object instances in a list by MAX_DEX_Bonus attribute.
 										else if (refinedSearch == "MAX DEX Bonus".ToLower())
@@ -142,6 +178,7 @@ namespace Equipment_Catalogue
 												// print out equipment profile
 												Print_Sort(piece);
 											}
+											serialToJSON(sorted_List);
 										}
 										// this block aims to sort (Ascending) object instances in a list by Armor Check Penalty attribute.
 										else if (refinedSearch == "Armor Check Penalty".ToLower())
@@ -152,6 +189,7 @@ namespace Equipment_Catalogue
 												// print out equipment profile
 												Print_Sort(piece);
 											}
+											serialToJSON(sorted_List);
 										}
 										// this block aims to sort (Ascending) object instances in a list by AC_Bonus attribute.
 										else if (refinedSearch == "Base AC".ToLower())
@@ -162,6 +200,7 @@ namespace Equipment_Catalogue
 												// print out equipment profile
 												Print_Sort(piece);
 											}
+											serialToJSON(sorted_List);
 										}
 										else
 										{
@@ -174,7 +213,7 @@ namespace Equipment_Catalogue
 						}
 						else
 						{
-							Console.WriteLine("		Please Enter a Number Between 1-5.");
+							Console.WriteLine("		Please Enter a Number Between 0-5.");
 						}
 					}
 					else
@@ -265,6 +304,7 @@ namespace Equipment_Catalogue
 		{
 			Console.WriteLine("		Main Menu: \n\n\n" +
 				"		Choose a list of items, or enter the name of the item directly. [Not Case Sensitive]\n\n" +
+				"   \t\t[Enter 0 to Import Your Previously Saved Items From 'favoriteloot.json']\n" +
 				"		[Enter 1 for a List of the Entire Equipment Catalogue]\n" +
 				"		[Enter 2 for a List of Armor]\n" +
 				"		[Enter 3 for a List of Shields]\n" +
@@ -299,20 +339,60 @@ namespace Equipment_Catalogue
 													$"		Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
 		}
 
+		// in hindsight, i should have used tab characters instead of spaces methinks.  oh well, it works fine atm.  I may fix later just for organization purposes.
 		public static void Intro()
 		{
-					Console.WriteLine("\n\n\n" + "                         )                           ****+****\n" +
-							"		        (                            **+++++**\n" +
-							"		+0)))))(+)>>>>>>>>>>>>>>>>>>>>        ***+***\n" +
-							"		        (                              **+**\n" +
-							"                         )                              *+*\n\n" +
-							"		Hello, and welcome to the HG-Equipment Catalogue Manager!\n\n" +
-							"		This program's purpose is to provide a searchable database of the module's \n" +
-							"		gear. The aim is to make it easier to build characters due to possessing a foreknowledge\n" +
-							"		of item drops. You can search the entire equipment catalogue at once, or by categories.\n\n" +
-							"		I hope you find the program easy to use, and please do offer suggestions for improving\n" +
-							"		your user experience. Happy hunting -- Miles\n\n");
+			Console.WriteLine("\n\n\n" + "                         )                           ****+****\n" +
+					"		        (                            **+++++**\n" +
+					"		+0)))))(+)>>>>>>>>>>>>>>>>>>>>        ***+***\n" +
+					"		        (                              **+**\n" +
+					"                         )                              *+*\n\n" +
+					"		Hello, and welcome to the HG-Equipment Catalogue Manager!\n\n" +
+					"		This program's purpose is to provide a searchable database of the module's \n" +
+					"		gear. The aim is to make it easier to build characters due to possessing a foreknowledge\n" +
+					"		of item drops. You can search the entire equipment catalogue at once, or by categories.\n\n" +
+					"		I hope you find the program easy to use, and please do offer suggestions for improving\n" +
+					"		your user experience. Happy hunting -- Miles\n\n");
 		}
 
-	}
+
+		// method to write to file (serialize json)
+		public static void SerializeEquipmentToFile(List<Equipment> equipmentList, string fileName)
+		{
+
+			var serializer = new JsonSerializer();
+			using (var writer = new StreamWriter(fileName))
+			using (var jsonWriter = new JsonTextWriter(writer))
+			{
+				serializer.Serialize(jsonWriter, equipmentList);
+			}
+		}
+
+		// this method will store user search to json file, for retrieval at any time, during, or upon next start of program.
+		public static void serialToJSON(List<Equipment> sorted_List)
+		{
+				var printToFile = "";
+				Console.WriteLine("\t\tPrint to File 'favoriteloot.json'? Note: This will Overwrite the File!  <Type: y or n>");
+				Console.Write("\t\t");
+				printToFile = Console.ReadLine();
+
+				if (printToFile == "y")
+				{
+				// serialize json file
+				string currentDirectory = Directory.GetCurrentDirectory();
+				DirectoryInfo directory = new DirectoryInfo(currentDirectory);
+				var fileNameOut = Path.Combine(directory.FullName, "favoriteloot.json");
+					SerializeEquipmentToFile(sorted_List, fileNameOut);
+					Console.WriteLine("\n\n\t\tYour selection has been saved.");
+				}
+				else
+				{
+					Console.WriteLine("\n\n\t\tYour selection has not been saved.");
+				}
+
+		}
+
+
+
+}
 }
