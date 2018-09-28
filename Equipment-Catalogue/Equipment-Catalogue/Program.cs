@@ -15,61 +15,33 @@ namespace Equipment_Catalogue
 
 			try
 			{
-
 				string currentDirectory = Directory.GetCurrentDirectory();
 				DirectoryInfo directory = new DirectoryInfo(currentDirectory);
 				var fileName = Path.Combine(directory.FullName, "equipment.json");
+				// json data
 				var equipmentList = DeserializeEquipment(fileName);
 
-				// this list is for my AC_Bonus sort function:  I need to learn how to add and use 
-				// overloads so that I can add more tests.  As is, I can only return AC_Bonus unless
-				// I add a new class for each attribute.
+				// this list is for my attribute sort function sort_list: 
 				var equipmentSort = DeserializeEquipment(fileName);
-				// instantiate EquipmentCatalogue class from the JSON data deserialized named
-				// equipmentList.
+
+				// instantiate EquipmentCatalogue class from the JSON data 
 				var equipmentCatalogue = new EquipmentCatalogue(equipmentList);
-				
 
-
-				// Introduction to the user: Could place this in a static method at the bottom to make it cleaner.
-				Console.WriteLine("\n\n\n" +
-							"		Hello, and welcome to the HG-Equipment Catalogue Manager!\n\n" +
-							"		This program's purpose is to provide a searchable database of the module's \n" +
-							"		gear. The aim is to make it easier to build characters due to possessing a foreknowledge\n" +
-							"		of item drops. You can search the entire equipment catalogue at once, or by categories.\n\n" +
-							"		I hope you find the program easy to use, and please do offer suggestions for improving\n" +
-							"		your user experience. Happy hunting -- Miles\n\n\n");
+				// Introduction to the user
+				Intro();
 
 				// instantiate an Equipment type so that we can use its generic methods.
 				var equipment = new Equipment();
 
-
-				// these sub-classes were kept as remnants of the first draft, (I could just substitute 
-				// a string variable as a condition check now) when I 
-				// manually added each subclass to the Equipment Catalogue array.  After
-				// deserialization, I found my code lacking the ability to instantiate each
-				// sub-class based on a master json base class list.  Instead the lesson from treehouse
-				// focused on one class at a time.  Rather than stop progress and rewriting methods,
-				// I just worked around it for the time being.  I did find out how to write multiple classes
-				// to a json file, but I did not learn how to deserialize those to one List<Equipment>.
-
-
-				// instantiate sub-classes to use DetectEquipmentType method
-
+				// instantiate sub-classes to use DetectEquipmentType method: In the future, I plan to extend this program to use the subclasses.
 				var armor = new Armor("Armor");
 				var shield = new Shield("Shield");
 				var cloak = new Cloak("Cloak");
 
-
+				// ensuring the variable is 'fresh'
 				string searchResult = null;
-				// Provide user with option to enter search criteria for specific items.
-				// Eventually, I would like the Equipment Catalogue to be searched by 
-				// each of the various categories.  I will add as time allows.
-
-				// prompt that will instruct a user to choose a list of items,
-				// or will instruct the user to enter an item by name.
-
-				// Main Menu Instructions 
+				
+				// Main Menu Search Instructions 
 				MainMenuInstructions();
 
 				// this bit gives formatting space to the console readline output
@@ -77,12 +49,10 @@ namespace Equipment_Catalogue
 				searchResult = Console.ReadLine().ToLower();
 				int list;
 
+				// loop that controls menu
 				while (searchResult != "quit")
 				{
-					// find subtype item in Equipment Catalogue method using ConsoleReadLine
-					// to gather user input.
 					// Using a try Parse to store searchResult into an int variable named list.
-
 					if (Int32.TryParse(searchResult, out list))
 					{
 						if (list <= 5 && list > 0)
@@ -91,16 +61,17 @@ namespace Equipment_Catalogue
 							{
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
-								//// calling from equipmentCatalogue the NumberOfItems computed property.
+								
 								Console.WriteLine($"		There are presently {equipmentCatalogue.NumberOfItems} items in the Equipment Catalogue.\n\n\n");
-								// add list of equipment here
+
+								// method displays full list of equipment here
 								equipmentCatalogue.DisplayEquipmentCatalogue(equipmentCatalogue);
 							}
 							else if (list == 2)
 							{
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
-								// add list of armor here
+								// displays list of armor here
 								equipmentCatalogue.DetectEquipmentType(equipmentCatalogue, armor);
 
 							}
@@ -108,7 +79,7 @@ namespace Equipment_Catalogue
 							{
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
-								// add list of shields here
+								// displays list of shields here
 								equipmentCatalogue.DetectEquipmentType(equipmentCatalogue, shield);
 
 							}
@@ -116,7 +87,7 @@ namespace Equipment_Catalogue
 							{
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
-								// add list of cloaks here
+								// displays list of cloaks here
 								equipmentCatalogue.DetectEquipmentType(equipmentCatalogue, cloak);
 							}
 							else if (list == 5)
@@ -124,7 +95,6 @@ namespace Equipment_Catalogue
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
 
-								// refined search text menu instructions method
 								RefinedMenuInstructions();
 
 								// this gives formatting space to the readline output
@@ -134,6 +104,7 @@ namespace Equipment_Catalogue
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
 
+								// allow user to return to main-menu
 								if (refinedSearch == "		main-menu".ToLower())
 								{
 									// program will loop back to main-menu by default.
@@ -194,8 +165,7 @@ namespace Equipment_Catalogue
 										}
 										else
 										{
-											// method that will list the equipment profile of each item in the equipmentCatalogue
-											// to the console. I'm using the computed property 'NumberOfItems' in place of _items.Count.
+											// prints out list based on item attribute
 											equipmentCatalogue.DisplayEquipmentCategory(equipmentCatalogue, refinedSearch);
 										}
 									}
@@ -328,7 +298,16 @@ namespace Equipment_Catalogue
 													$"		Item Armor Check Penalty: {piece.Armor_Check_Penalty}\n\n");
 		}
 
-
+		public static void Intro()
+		{
+					Console.WriteLine("\n\n\n" +
+							"		Hello, and welcome to the HG-Equipment Catalogue Manager!\n\n" +
+							"		This program's purpose is to provide a searchable database of the module's \n" +
+							"		gear. The aim is to make it easier to build characters due to possessing a foreknowledge\n" +
+							"		of item drops. You can search the entire equipment catalogue at once, or by categories.\n\n" +
+							"		I hope you find the program easy to use, and please do offer suggestions for improving\n" +
+							"		your user experience. Happy hunting -- Miles\n\n\n");
+		}
 
 	}
 }

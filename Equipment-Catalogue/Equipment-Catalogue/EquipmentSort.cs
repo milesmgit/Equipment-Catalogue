@@ -47,7 +47,8 @@ namespace Equipment_Catalogue
 	}
 
 
-	// will add various sort nested classes, to be used as methods that sort various attributes.
+	// will add attributes later:  deflection etc...ill use this to get list of items based upon attribute, public void DisplayEquipmentCategory(EquipmentCatalogue _list, string criteria)
+	// and then use the above to sort based upon ac bonus.
 
 
 }
