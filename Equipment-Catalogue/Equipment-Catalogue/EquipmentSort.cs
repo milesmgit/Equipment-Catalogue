@@ -15,6 +15,8 @@ namespace Equipment_Catalogue
 
 		public string Attribute { get; set; }
 
+		// constructor that takes a string 'attribute' that will be passed into 
+		// the sort method as a means to test conditions and control method logic flow.
 		public EquipmentSort(string attribute)
 		{
 			Attribute = attribute;

@@ -109,6 +109,7 @@ namespace Equipment_Catalogue
 								// base class method used to format text results
 								equipment.GimmeSomeSpace();
 
+								// instructions for searching by attribute
 								RefinedMenuInstructions();
 
 								// this gives formatting space to the readline output
@@ -119,7 +120,7 @@ namespace Equipment_Catalogue
 								equipment.GimmeSomeSpace();
 
 								// allow user to return to main-menu
-								if (refinedSearch == "		main-menu".ToLower())
+								if (refinedSearch == "main-menu".ToLower())
 								{
 									// program will loop back to main-menu by default.
 								}
@@ -137,7 +138,7 @@ namespace Equipment_Catalogue
 									}
 									else
 									{
-										// this block aims to sort (Ascending) object instances in a list by AC_Bonus attribute.
+										// this block aims to sort (best to worst) object instances in a list by AC_Bonus attribute.
 										if (refinedSearch == "AC Bonus".ToLower())
 										{
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
@@ -147,11 +148,11 @@ namespace Equipment_Catalogue
 												// print out equipment profile
 												Print_Sort(piece);
 											}
-
+											// this serializes the List to a JSON file.
 											serialToJSON(sorted_List);
 
 										}
-										// this block aims to sort (Ascending) object instances in a list by MAX_DEX_Bonus attribute.
+										// this block aims to sort (best to worst) object instances in a list by MAX_DEX_Bonus attribute.
 										else if (refinedSearch == "MAX DEX Bonus".ToLower())
 										{
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
@@ -162,7 +163,7 @@ namespace Equipment_Catalogue
 											}
 											serialToJSON(sorted_List);
 										}
-										// this block aims to sort (Ascending) object instances in a list by Armor Check Penalty attribute.
+										// this block aims to sort (best to worst) object instances in a list by Armor Check Penalty attribute.
 										else if (refinedSearch == "Armor Check Penalty".ToLower())
 										{
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
@@ -173,7 +174,7 @@ namespace Equipment_Catalogue
 											}
 											serialToJSON(sorted_List);
 										}
-										// this block aims to sort (Ascending) object instances in a list by AC_Bonus attribute.
+										// this block aims to sort (best to worst) object instances in a list by AC_Bonus attribute.
 										else if (refinedSearch == "Base AC".ToLower())
 										{
 											var sorted_List = Sort_List(equipmentSort, refinedSearch);
@@ -226,6 +227,7 @@ namespace Equipment_Catalogue
 					}
 					// base class method used to format text results
 					equipment.GimmeSomeSpace();
+
 					searchResult = null;
 					// prompt that will instruct a user to choose a list of items,
 					// or will instruct the user to enter an item by name.
@@ -295,10 +297,15 @@ namespace Equipment_Catalogue
 				"		[Type quit to terminate the program.]\n\n");
 		}
 
+		// this method passes in a class that contains an interface method for sorting; the method also take a string 'attribute' that 
+		// will be passed into the class constructor so that various attributes may be sorted.
 		public static List<Equipment> Sort_List(List<Equipment> equipmentSort, string attribute)
 		{
+			// this is the list we will return; it will hold sorted list data
 			var sorted_List = new List<Equipment>();
 
+			// instantiating a new instance of EquipmentSort class with the property 'Attribute' constructor
+			// that allows for logic flow inside the method 'Compare' in the EquipmentSort class.
 			equipmentSort.Sort(new EquipmentSort(attribute));
 
 			foreach (var equipment in equipmentSort)
