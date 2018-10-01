@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace Equipment_Catalogue
 {
@@ -27,6 +28,9 @@ namespace Equipment_Catalogue
 
 				// instantiate EquipmentCatalogue class from the JSON data 
 				var equipmentCatalogue = new EquipmentCatalogue(equipmentList);
+
+
+			
 
 
 
@@ -383,5 +387,11 @@ namespace Equipment_Catalogue
 
 
 
-}
+	
+
+
+
+
+
+	}
 }
