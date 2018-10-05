@@ -365,7 +365,7 @@ namespace Equipment_Catalogue
 		public static void serialToJSON(List<Equipment> sorted_List)
 		{
 				var printToFile = "";
-				Console.WriteLine("\t\tPrint to File 'favoriteloot.json'? Note: This will Overwrite the File!  <Type: y or n>");
+				Console.WriteLine("\t\tPrint to File 'favoriteloot.json'? Note: This will Overwrite the File!  <Type: y or n>\n\n");
 				Console.Write("\t\t");
 				printToFile = Console.ReadLine();
 
