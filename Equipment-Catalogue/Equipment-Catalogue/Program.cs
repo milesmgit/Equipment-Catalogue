@@ -200,7 +200,7 @@ namespace Equipment_Catalogue
 						}
 						else
 						{
-							Console.WriteLine("		Please Enter a Number Between 0-5.");
+							Console.WriteLine("\n\n		Please Enter a Number Between 0-5.");
 						}
 					}
 					else
