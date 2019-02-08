@@ -12,5 +12,5 @@ Equipment Catalogue Manager for a MMORPG
  It will be much easier to design an optimum character for future use if the 
  equipment gearset is known.
 
-To run the program, download and open the .sln file in Visual Studio.  The instructions for how to use the program are on screen, in console.
+To run the program, download the project and find and open the .sln file in Visual Studio.  The instructions for how to use the program are on screen, in console.
 
